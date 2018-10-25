@@ -16,8 +16,14 @@ def train_test():
     encoder = LabelBinarizer()
     Y = encoder.fit_transform(y)
 
+    # train the network
     neural_network = create_network()
     neural_network.fit(X, Y, epochs=500, batch_size=10)
+
+    # test the model
+    np.set_printoptions(suppress=True)
+    predictions = neural_network.predict(X[0:10], batch_size=32, verbose=0)
+    print(predictions)
 
 
 def create_network():
